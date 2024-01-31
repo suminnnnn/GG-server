@@ -1,7 +1,7 @@
 package com.example.groundguardians.auth;
 
-import com.example.groundguardians.User;
-import com.example.groundguardians.UserRepository;
+import com.example.groundguardians.user.User;
+import com.example.groundguardians.user.UserRepository;
 import com.example.groundguardians.jwt.JwtTokenUtil;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;

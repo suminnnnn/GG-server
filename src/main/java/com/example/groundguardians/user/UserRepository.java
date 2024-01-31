@@ -1,4 +1,4 @@
-package com.example.groundguardians;
+package com.example.groundguardians.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

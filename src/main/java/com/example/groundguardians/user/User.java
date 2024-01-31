@@ -1,4 +1,4 @@
-package com.example.groundguardians;
+package com.example.groundguardians.user;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package com.example.groundguardians.jwt;
 
-import com.example.groundguardians.User;
+import com.example.groundguardians.user.User;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SignatureException;
