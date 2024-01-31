@@ -3,6 +3,7 @@ package com.example.groundguardians.auth;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
@@ -11,9 +12,11 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
+@Setter
 @RequiredArgsConstructor
 public class GoogleOauth {
 
@@ -81,8 +84,8 @@ public class GoogleOauth {
     public GoogleOAuthToken getAccessToken(ResponseEntity<String> response) throws JsonProcessingException {
         System.out.println("response.getBody() = " + response.getBody());
         GoogleOAuthToken googleOAuthToken= objectMapper.readValue(response.getBody(),GoogleOAuthToken.class);
-        return googleOAuthToken;
 
+        return googleOAuthToken;
     }
 
     public ResponseEntity<String> requestUserInfo(GoogleOAuthToken oAuthToken) {
