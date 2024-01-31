@@ -1,10 +1,14 @@
 package com.example.groundguardians.user;
 
+import com.example.groundguardians.userAnimalRelation.UserAnimalRelation;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -23,4 +27,7 @@ public class User {
     private String email;
 
     private String name;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private final Set<UserAnimalRelation> userAnimals = new HashSet<>();
 }
