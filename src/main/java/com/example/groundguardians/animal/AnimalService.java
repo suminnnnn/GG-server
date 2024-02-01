@@ -19,6 +19,7 @@ public class AnimalService {
     }
 
     public AnimalResponseDto getAnimalName(String result) {
+
         Animal animal = animalRepository.findByResult(result);
 
         return AnimalResponseDto.fromEntity(animal);

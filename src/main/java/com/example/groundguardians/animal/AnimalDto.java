@@ -8,6 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnimalDto {
+
     private String name;
 
     private String card;
@@ -22,16 +23,6 @@ public class AnimalDto {
                 .card(this.card)
                 .result(this.result)
                 .url(this.url)
-                .build();
-    }
-
-
-    public static AnimalDto fromEntity(Animal animal) {
-        return AnimalDto.builder()
-                .name(animal.getName())
-                .card(animal.getCard())
-                .result(animal.getResult())
-                .url(animal.getUrl())
                 .build();
     }
 }
