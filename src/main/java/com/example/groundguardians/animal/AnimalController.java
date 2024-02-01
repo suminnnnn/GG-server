@@ -25,4 +25,10 @@ public class AnimalController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/{result}")
+    public ResponseEntity<?> getAnimalName(@RequestParam("result") String result) {
+
+        return ResponseEntity.ok().body(animalService.getAnimalName(result));
+    }
 }
