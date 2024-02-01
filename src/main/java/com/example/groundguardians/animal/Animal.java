@@ -4,6 +4,7 @@ import com.example.groundguardians.quiz.Quiz;
 import com.example.groundguardians.userAnimalRelation.UserAnimalRelation;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -37,4 +38,12 @@ public class Animal{
 
     @OneToMany(mappedBy = "animal", fetch = FetchType.LAZY)
     private final Set<Quiz> quizzes = new HashSet<>();
+
+    @Builder
+    public Animal(String name, String card, String result, String url) {
+        this.name = name;
+        this.card = card;
+        this.result = result;
+        this.url = url;
+    }
 }
