@@ -1,7 +1,6 @@
 package com.example.groundguardians.quiz;
 
 import com.example.groundguardians.animal.Animal;
-import com.example.groundguardians.animal.AnimalDto;
 import lombok.*;
 
 @Getter

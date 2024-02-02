@@ -25,4 +25,16 @@ public class QuizService {
 
         return quizRepository.save(quiz);
     }
+
+    public QuizResponseDto getQuiz(Long animal_id) {
+        List<Quiz> quizList = quizRepository.findAllByAnimalId(animal_id);
+        Optional<Animal> animal = animalRepository.findById(animal_id);
+
+        Random random = new Random();
+        int randomIndex = random.nextInt(quizList.size());
+        Quiz quiz = quizList.get(randomIndex);
+
+        return QuizResponseDto.fromEntity(quiz, animal.orElseThrow());
+    }
+
 }

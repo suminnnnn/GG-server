@@ -26,4 +26,10 @@ public class QuizController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/{animal_id}")
+    public ResponseEntity<?> getQuiz(@RequestParam("animal_id") Long animal_id) {
+
+        return ResponseEntity.ok().body(quizService.getQuiz(animal_id));
+    }
 }
