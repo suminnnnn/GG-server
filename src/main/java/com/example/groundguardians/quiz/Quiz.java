@@ -2,9 +2,7 @@ package com.example.groundguardians.quiz;
 
 import com.example.groundguardians.animal.Animal;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "quiz")
@@ -25,4 +23,12 @@ public class Quiz{
     @ManyToOne
     @JoinColumn(name = "animal_id", nullable = false)
     private Animal animal;
+
+    @Builder
+    public Quiz(String question, String answer, Animal animal) {
+        this.question = question;
+        this.answer = answer;
+        this.animal = animal;
+    }
+
 }
