@@ -3,6 +3,7 @@ package com.example.groundguardians.animal;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +16,9 @@ public class AnimalController {
     private final AnimalService animalService;
 
     @PostMapping("")
-    public ResponseEntity<?> postAnimalCard(@RequestBody @Valid AnimalDto animalDto) {
-        Animal animal = animalService.postAnimalCard(animalDto);
+    public ResponseEntity<?> postAnimalCard(@RequestBody @Valid AnimalRequestDto animalRequestDto) {
+
+        Animal animal = animalService.postAnimalCard(animalRequestDto);
 
         if (animal != null) {
             return new ResponseEntity<>(HttpStatus.OK);
@@ -28,7 +30,8 @@ public class AnimalController {
 
     @GetMapping("/{result}")
     public ResponseEntity<?> getAnimalName(@RequestParam("result") String result) {
+        AnimalDto animalDto = animalService.getAnimalName(result);
 
-        return ResponseEntity.ok().body(animalService.getAnimalName(result));
+        return ResponseEntity.ok().body(animalDto);
     }
 }
