@@ -24,8 +24,9 @@ public class Animal{
     @Column(length = 30, nullable = false)
     private String name;
 
-    @Column(nullable = false)
-    private String card;
+    @Lob
+    @Column(nullable = false, length = 1000)
+    private byte[] card;
 
     @Column(nullable = false)
     private String result;
@@ -40,7 +41,7 @@ public class Animal{
     private final Set<Quiz> quizzes = new HashSet<>();
 
     @Builder
-    public Animal(String name, String card, String result, String url) {
+    public Animal(String name, byte[] card, String result, String url) {
         this.name = name;
         this.card = card;
         this.result = result;

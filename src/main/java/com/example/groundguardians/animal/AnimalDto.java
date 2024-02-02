@@ -11,7 +11,7 @@ public class AnimalDto {
 
     private String name;
 
-    private String card;
+    private byte[] card;
 
     private String result;
 
@@ -20,9 +20,25 @@ public class AnimalDto {
     public Animal toEntity(AnimalDto animalDto) {
         return Animal.builder()
                 .name(this.name)
-                .card(this.card)
+                .card(card)
                 .result(this.result)
                 .url(this.url)
+                .build();
+    }
+
+    public static AnimalDto fromEntity(Animal animal) {
+        return AnimalDto.builder()
+                .name(animal.getName())
+                .card(animal.getCard())
+                .build();
+    }
+
+
+    public static AnimalDto fromRequest(AnimalRequestDto animalRequestDto) {
+        return AnimalDto.builder()
+                .name(animalRequestDto.getName())
+                .result(animalRequestDto.getResult())
+                .url(animalRequestDto.getUrl())
                 .build();
     }
 }
