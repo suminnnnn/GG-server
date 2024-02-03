@@ -32,13 +32,4 @@ public class AnimalDto {
                 .card(animal.getCard())
                 .build();
     }
-
-
-    public static AnimalDto fromRequest(AnimalRequestDto animalRequestDto) {
-        return AnimalDto.builder()
-                .name(animalRequestDto.getName())
-                .result(animalRequestDto.getResult())
-                .url(animalRequestDto.getUrl())
-                .build();
-    }
 }

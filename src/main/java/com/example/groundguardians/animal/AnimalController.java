@@ -30,8 +30,8 @@ public class AnimalController {
 
     @GetMapping("/{result}")
     public ResponseEntity<?> getAnimalName(@RequestParam("result") String result) {
-        AnimalDto animalDto = animalService.getAnimalName(result);
+        AnimalResponseDto animalResponseDto = animalService.getAnimalName(result);
 
-        return ResponseEntity.ok().body(animalDto);
+        return ResponseEntity.ok().body(animalResponseDto);
     }
 }
