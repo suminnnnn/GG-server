@@ -1,6 +1,8 @@
 package com.example.groundguardians.animal;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -19,8 +21,9 @@ public class AnimalService {
     public Animal postAnimalCard(AnimalRequestDto animalRequestDto) {
 
         try {
-            String filePath = animalRequestDto.getCard();
-            byte[] imageBytes = Files.readAllBytes(Paths.get(filePath));
+            String filePath = "images/" + animalRequestDto.getCard();
+            Resource resource = new ClassPathResource(filePath);
+            byte[] imageBytes = Files.readAllBytes(resource.getFile().toPath());
 
             AnimalDto animalDto = new AnimalDto();
 
@@ -39,10 +42,10 @@ public class AnimalService {
 
     }
 
-    public AnimalDto getAnimalName(String result) {
+    public AnimalResponseDto getAnimalName(String result) {
 
         Animal animal = animalRepository.findByResult(result);
 
-        return AnimalDto.fromEntity(animal);
+        return AnimalResponseDto.fromEntity(animal);
     }
 }
