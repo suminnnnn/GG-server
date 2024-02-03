@@ -7,6 +7,8 @@ import com.example.groundguardians.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -32,5 +34,20 @@ public class UserAnimalRelationService {
         }
 
         return animal.getCard();
+    }
+
+    public List<byte[]> getMyAnimalCard(long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        List<byte[]> cardList = new ArrayList<>();
+
+        Set<UserAnimalRelation> userAnimalRelationSet = userAnimalRelationRepository.findAllByUser_Id(userId);
+
+        if(!userAnimalRelationSet.isEmpty()){
+            for(UserAnimalRelation relation: userAnimalRelationSet){
+                cardList.add(relation.getAnimal().getCard());
+            }
+        }
+
+        return cardList;
     }
 }
