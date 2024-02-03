@@ -4,6 +4,7 @@ import com.example.groundguardians.animal.Animal;
 import com.example.groundguardians.user.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -24,4 +25,10 @@ public class UserAnimalRelation{
     @ManyToOne
     @JoinColumn(name = "animal_id", nullable = false)
     private Animal animal;
+
+    @Builder
+    public UserAnimalRelation(User user, Animal animal){
+        this.user = user;
+        this.animal = animal;
+    }
 }
