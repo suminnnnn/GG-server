@@ -16,7 +16,7 @@ public class QuizController {
     private final QuizService quizService;
 
     @PostMapping("/{animal_id}")
-    public ResponseEntity<?> postQuiz(@RequestParam("animal_id") Long animal_id,
+    public ResponseEntity<?> postQuiz(@PathVariable("animal_id") Long animal_id,
                                       @RequestBody @Valid QuizDto quizDto) {
 
         Quiz quiz = quizService.postQuiz(animal_id, quizDto);
@@ -30,7 +30,7 @@ public class QuizController {
     }
 
     @GetMapping("/{animal_id}")
-    public ResponseEntity<?> getQuiz(@RequestParam("animal_id") Long animal_id) {
+    public ResponseEntity<?> getQuiz(@PathVariable("animal_id") Long animal_id) {
 
         return ResponseEntity.ok().body(quizService.getQuiz(animal_id));
     }
