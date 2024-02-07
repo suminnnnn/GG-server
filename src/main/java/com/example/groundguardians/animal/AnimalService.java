@@ -21,7 +21,7 @@ public class AnimalService {
     public Animal postAnimalCard(AnimalRequestDto animalRequestDto) {
 
         try {
-            String filePath = "images/" + animalRequestDto.getCard();
+            String filePath = "src/main/resources/images/" + animalRequestDto.getCard();
             Resource resource = new ClassPathResource(filePath);
             byte[] imageBytes = Files.readAllBytes(resource.getFile().toPath());
 
