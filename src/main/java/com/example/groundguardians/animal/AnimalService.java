@@ -26,22 +26,16 @@ public class AnimalService {
         try {
             String filePath = "images/" + animalRequestDto.getCard();
 
-            // JAR 파일이 위치하는 디렉토리 경로 가져오기
-            String jarFilePath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-            jarFilePath = URLDecoder.decode(jarFilePath, "UTF-8");
-            File jarFile = new File(jarFilePath);
-            String jarDirectory = jarFile.getParent();
+            // JAR 파일 내부의 리소스를 가져오기
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filePath);
 
-            // 실제 파일 경로 구성
-            String absoluteFilePath = jarDirectory + File.separator + filePath;
-
-            File file = new File(absoluteFilePath);
-
-            if (!file.exists()) {
-                throw new FileNotFoundException("File not found: " + absoluteFilePath);
+            // 파일이 존재하지 않으면 예외 발생
+            if (inputStream == null) {
+                throw new FileNotFoundException("File not found: " + filePath);
             }
 
-            byte[] imageBytes = Files.readAllBytes(file.toPath());
+            // InputStream에서 byte 배열로 변환
+            byte[] imageBytes = inputStream.readAllBytes();
 
             AnimalDto animalDto = new AnimalDto();
 
