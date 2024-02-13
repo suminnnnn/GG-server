@@ -20,10 +20,9 @@ public class AuthService {
     private final HttpServletResponse response;
     private final JwtTokenUtil jwtTokenUtil;
 
-    public void request() throws IOException {
-        String redirectURL = googleOauth.getOauthRedirectURL();
+    public String request() throws IOException {
 
-        response.sendRedirect(redirectURL);
+        return googleOauth.getOauthRedirectURL();
     }
 
     public GetSocialOAuthRes oAuthLogin(String code) throws IOException {
