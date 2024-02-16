@@ -31,7 +31,7 @@ public class UserAnimalRelationController {
     public ResponseEntity<?> getAllAnimalCard(Principal principal){
         long userId = Long.parseLong(principal.getName());
 
-        return ResponseEntity.ok().body(userAnimalRelationService.getMyAnimalCard(userId));
+        return ResponseEntity.ok().body(userAnimalRelationService.getMyPageInfo(userId));
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.groundguardians.userAnimalRelation;
 import com.example.groundguardians.animal.Animal;
 import com.example.groundguardians.animal.AnimalRepository;
 import com.example.groundguardians.user.User;
+import com.example.groundguardians.user.UserDto;
 import com.example.groundguardians.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,15 @@ public class UserAnimalRelationService {
     private final UserRepository userRepository;
     private final AnimalRepository animalRepository;
 
+    public UserDto getMyPageInfo(long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
+        return UserDto.builder()
+                .name(user.getName())
+                .email(user.getEmail())
+                .cardImage(getMyAnimalCard(userId))
+                .build();
+    }
     public byte[] addAnimalCardToUser(long userId, long animalId) {
 
         Optional<UserAnimalRelation> userAnimalRelation = userAnimalRelationRepository
