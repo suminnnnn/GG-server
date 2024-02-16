@@ -21,7 +21,7 @@ public class UserAnimalRelationController {
     private final UserAnimalRelationService userAnimalRelationService;
 
     @PostMapping("/{animal_id}")
-    public ResponseEntity<?> addCardToMyPage(@RequestParam("animal_id")long animalId, Principal principal){
+    public ResponseEntity<?> addCardToMyPage(@PathVariable("animal_id")long animalId, Principal principal){
         long userId = Long.parseLong(principal.getName());
 
         return ResponseEntity.ok().body(userAnimalRelationService.addAnimalCardToUser(userId, animalId));
