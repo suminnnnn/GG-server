@@ -20,8 +20,8 @@ public class AuthController {
     private final AuthService authService;
 
     @GetMapping
-    public void socialLoginRedirect() throws IOException {
-        authService.request();
+    public ResponseEntity<String> socialLoginRedirect() throws IOException {
+        return new ResponseEntity<>(authService.request(), HttpStatus.OK);
     }
 
     @ResponseBody
